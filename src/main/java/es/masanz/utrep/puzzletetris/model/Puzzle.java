@@ -1,16 +1,23 @@
 package es.masanz.utrep.puzzletetris.model;
 
-public class Puzzle {
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class Puzzle implements Cloneable {
 
     private String[][] tablero;
     private int filas, columnas;
     private Pieza piezaJuego;
     private int filaPieza, columnaPieza;
+    private List<PiezaCantidad> contadorPiezas;
 
     public Puzzle(int filas, int columnas) {
         this.filas = filas;
         this.columnas = columnas;
         this.tablero = new String[filas][columnas];
+        this.contadorPiezas = new ArrayList<>();
     }
 
     public Pieza generarPieza() {
@@ -22,10 +29,27 @@ public class Puzzle {
         columnaPieza = (tablero[0].length - pieza.getForma()[0].length) / 2;
         boolean sePuedeColocar = validarPieza(piezaJuego, filaPieza, columnaPieza);
         if(sePuedeColocar) {
+            contarPieza(pieza);
             return pieza;
         } else {
             return null;
         }
+    }
+
+    private void contarPieza(Pieza pieza) {
+        boolean existe = false;
+        for (PiezaCantidad contadorPieza : contadorPiezas) {
+            if(contadorPieza.getPieza().equals(pieza)){
+                contadorPieza.aumentarCantidad();
+                existe = true;
+                break;
+            }
+        }
+        if(!existe) {
+            PiezaCantidad piezaCantidad = new PiezaCantidad(pieza);
+            contadorPiezas.add(piezaCantidad);
+        }
+
     }
 
     public boolean validarPieza(Pieza pieza, int fila, int columna) {
@@ -176,6 +200,21 @@ public class Puzzle {
         descolocarPieza(piezaJuego, filaPieza, columnaPieza);
     }
 
+    @Override
+    public Puzzle clone() {
+        Puzzle nuevoPuzzle = new Puzzle(this.filas, this.columnas);
+        String[][] nuevoTablero = nuevoPuzzle.getTablero();
+        for (int fila = 0; fila < tablero.length; fila++) {
+            for (int columna = 0; columna < tablero[0].length; columna++) {
+                nuevoTablero[fila][columna] = tablero[fila][columna];
+            }
+        }
+        nuevoPuzzle.setPiezaJuego(piezaJuego.clone());
+        nuevoPuzzle.setFilaPieza(filaPieza);
+        nuevoPuzzle.setColumnaPieza(columnaPieza);
+        return nuevoPuzzle;
+    }
+
     public String[][] getTablero() {
         return tablero;
     }
@@ -198,5 +237,37 @@ public class Puzzle {
 
     public void setColumnas(int columnas) {
         this.columnas = columnas;
+    }
+
+    public Pieza getPiezaJuego() {
+        return piezaJuego;
+    }
+
+    public void setPiezaJuego(Pieza piezaJuego) {
+        this.piezaJuego = piezaJuego;
+    }
+
+    public int getFilaPieza() {
+        return filaPieza;
+    }
+
+    public void setFilaPieza(int filaPieza) {
+        this.filaPieza = filaPieza;
+    }
+
+    public int getColumnaPieza() {
+        return columnaPieza;
+    }
+
+    public void setColumnaPieza(int columnaPieza) {
+        this.columnaPieza = columnaPieza;
+    }
+
+    public List<PiezaCantidad> getContadorPiezas() {
+        return contadorPiezas;
+    }
+
+    public void setContadorPiezas(List<PiezaCantidad> contadorPiezas) {
+        this.contadorPiezas = contadorPiezas;
     }
 }

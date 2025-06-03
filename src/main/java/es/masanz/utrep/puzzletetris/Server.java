@@ -21,6 +21,8 @@ public class Server {
 
         app.get("/", TetrisController::inicio);
 
+        app.post("/tecla-pulsada", TetrisController::mover);
+
     }
 
 }

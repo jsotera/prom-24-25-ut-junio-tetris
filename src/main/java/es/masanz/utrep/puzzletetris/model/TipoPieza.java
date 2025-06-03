@@ -2,13 +2,13 @@ package es.masanz.utrep.puzzletetris.model;
 
 public enum TipoPieza {
 
-    T(new int[][]{ {1, 1, 1}, {0, 1, 0} }, "\u001B[31m", "T"),
-    I(new int[][]{ {1}, {1}, {1}, {1} }, "\u001B[32m", "I"),
-    O(new int[][]{ {1, 1}, {1, 1} }, "\u001B[33m", "O"),
-    L(new int[][]{ {1, 0}, {1, 0}, {1, 1} }, "\u001B[34m", "L"),
-    J(new int[][]{ {0, 1}, {0, 1}, {1, 1} }, "\u001B[35m", "J"),
-    S(new int[][]{ {0, 1, 1}, {1, 1, 0} }, "\u001B[36m", "S"),
-    Z(new int[][]{ {1, 1, 0}, {0, 1, 1} }, "\u001B[91m", "Z");
+    T(new int[][]{ {1, 1, 1}, {0, 1, 0} }, "", "T"),
+    I(new int[][]{ {1}, {1}, {1}, {1} }, "", "I"),
+    O(new int[][]{ {1, 1}, {1, 1} }, "", "O"),
+    L(new int[][]{ {1, 0}, {1, 0}, {1, 1} }, "", "L"),
+    J(new int[][]{ {0, 1}, {0, 1}, {1, 1} }, "", "J"),
+    S(new int[][]{ {0, 1, 1}, {1, 1, 0} }, "", "S"),
+    Z(new int[][]{ {1, 1, 0}, {0, 1, 1} }, "", "Z");
 
     private final int[][] forma;
     private final String color;

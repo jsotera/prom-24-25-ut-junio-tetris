@@ -1,8 +1,11 @@
 package es.masanz.utrep.puzzletetris.model;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 public class Pieza implements Cloneable{
 
-    public static final String RESET = "\u001B[0m";
+    public static final String RESET = "";
 
     private int[][] forma;
     private String color;
@@ -62,6 +65,19 @@ public class Pieza implements Cloneable{
         clon.setLetra(this.getLetra());
         clon.setColor(this.getColor());
         return clon;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Pieza pieza = (Pieza) o;
+        return this.letra.equals(pieza.getLetra());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(letra);
     }
 
     public int[][] getForma() {

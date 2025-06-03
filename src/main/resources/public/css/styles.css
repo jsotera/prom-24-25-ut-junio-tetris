@@ -1,0 +1,29 @@
+.contenedor{
+  display: flex;
+  justify-content: center;
+  padding: 10vh;
+}
+
+.tablero{
+  border: 1px solid grey;
+}
+
+.fila{
+  display: flex;
+}
+
+.columna{
+  height: 5vh;
+  width: 5vh;
+  border: 1px solid grey;
+}
+
+/* Colores de piezas */
+.I { background-color: cyan; }
+.O { background-color: yellow; }
+.T { background-color: purple; }
+.S { background-color: limegreen; }
+.Z { background-color: red; }
+.L { background-color: orange; }
+.J { background-color: blue; }
+
